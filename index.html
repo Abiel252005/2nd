@@ -30,23 +30,21 @@
     Tu navegador no soporta el elemento de audio. Haz clic <a href="/ongratulations.mp3">aquí</a> para descargar la canción.
   </audio>
   <script>
-    const card = document.getElementById('card');
+    const card = document.querySelector('.card');
     let isOpen = false;
 
     card.addEventListener('click', () => {
-      if (window.innerWidth <= 550) {
-        isOpen = !isOpen;
-        const imgBox = card.querySelector('.imgBox');
-        const bark = card.querySelector('.bark');
-        if (isOpen) {
-          imgBox.style.transform = 'rotateY(-90deg)';
-          bark.style.opacity = '1';
-          bark.style.boxShadow = '350px 200px 80px rgba(0, 0, 0, .3) inset';
-        } else {
-          imgBox.style.transform = 'rotateY(0deg)';
-          bark.style.opacity = '0';
-          bark.style.boxShadow = 'none';
-        }
+      isOpen = !isOpen;
+      const imgBox = card.querySelector('.imgBox');
+      const bark = card.querySelector('.bark');
+      if (isOpen) {
+        imgBox.style.transform = 'rotateY(-90deg)';
+        bark.style.opacity = '1';
+        bark.style.boxShadow = '350px 200px 80px rgba(0, 0, 0, .3) inset';
+      } else {
+        imgBox.style.transform = 'rotateY(0deg)';
+        bark.style.opacity = '0';
+        bark.style.boxShadow = 'none';
       }
     });
   </script>

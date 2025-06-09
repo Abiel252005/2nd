@@ -193,3 +193,7 @@ h4 {
     margin-bottom: 15px;
   }
 }
+.imgBox {
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
