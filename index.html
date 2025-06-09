@@ -25,9 +25,26 @@
       <p class="text-right">Con amor Abiel ♥</p>
     </div>
   </div>
-  <audio autoplay>
-    <source src="Congratulations.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
+  <audio id="anniversaryAudio" autoplay>
+    <source src="./Congratulations.mp3" type="audio/mpeg">
+    Tu navegador no soporta el elemento de audio. Haz clic <a href="./Congratulations.mp3">aquí</a> para descargar la canción.
   </audio>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const audio = document.getElementById('anniversaryAudio');
+      audio.play().catch(function(error) {
+        console.log('Autoplay was prevented:', error);
+        const playButton = document.createElement('button');
+        playButton.textContent = 'Reproducir música';
+        playButton.style.position = 'fixed';
+        playButton.style.bottom = '10px';
+        playButton.style.right = '10px';
+        playButton.style.padding = '10px';
+        playButton.style.cursor = 'pointer';
+        playButton.onclick = () => audio.play();
+        document.body.appendChild(playButton);
+      });
+    });
+  </script>
 </body>
 </html>
