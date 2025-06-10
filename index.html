@@ -33,12 +33,17 @@
     const card = document.querySelector('.card');
     const audio = document.getElementById('anniversaryAudio');
     let isOpen = false;
+    let audioPlaying = false; // Nueva variable para rastrear si el audio está reproduciéndose
 
     // Función para reproducir audio (maneja errores de autoplay)
     function playAudio() {
-      audio.play().catch(error => {
-        console.log('Autoplay blocked:', error);
-      });
+      if (!audioPlaying) {
+        audio.play().then(() => {
+          audioPlaying = true;
+        }).catch(error => {
+          console.log('Autoplay blocked:', error);
+        });
+      }
     }
 
     // Evento para celular (clic abre y reproduce)
@@ -56,19 +61,15 @@
           imgBox.style.transform = 'rotateY(0deg)';
           bark.style.opacity = '0';
           bark.style.boxShadow = 'none';
-          audio.pause(); // Pausa audio al cerrar
-          audio.currentTime = 0; // Reinicia el audio
+          // No pausa ni reinicia el audio al cerrar
         }
       });
     } else {
-      // Evento para laptop (mouseover reproduce, mouseout pausa)
+      // Evento para laptop (mouseover reproduce, no pausa al salir)
       card.addEventListener('mouseover', () => {
         playAudio(); // Reproduce al pasar el mouse
       });
-      card.addEventListener('mouseout', () => {
-        audio.pause(); // Pausa al salir el mouse
-        audio.currentTime = 0; // Reinicia el audio
-      });
+      // Eliminamos el evento mouseout para no pausar
     }
   </script>
 </body>
