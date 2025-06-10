@@ -25,28 +25,51 @@
       <p class="text-right">Con mucho amor Abiel ♥</p>
     </div>
   </div>
-  <audio autoplay loop>
+  <audio id="anniversaryAudio" loop>
     <source src="/congratulations.mp3" type="audio/mpeg">
-    Tu navegador no soporta el elemento de audio. Haz clic <a href="/ongratulations.mp3">aquí</a> para descargar la canción.
+    Tu navegador no soporta el elemento de audio. Haz clic <a href="/congratulations.mp3">aquí</a> para descargar la canción.
   </audio>
   <script>
     const card = document.querySelector('.card');
+    const audio = document.getElementById('anniversaryAudio');
     let isOpen = false;
 
-    card.addEventListener('click', () => {
-      isOpen = !isOpen;
-      const imgBox = card.querySelector('.imgBox');
-      const bark = card.querySelector('.bark');
-      if (isOpen) {
-        imgBox.style.transform = 'rotateY(-90deg)';
-        bark.style.opacity = '1';
-        bark.style.boxShadow = '350px 200px 80px rgba(0, 0, 0, .3) inset';
-      } else {
-        imgBox.style.transform = 'rotateY(0deg)';
-        bark.style.opacity = '0';
-        bark.style.boxShadow = 'none';
-      }
-    });
+    // Función para reproducir audio (maneja errores de autoplay)
+    function playAudio() {
+      audio.play().catch(error => {
+        console.log('Autoplay blocked:', error);
+      });
+    }
+
+    // Evento para celular (clic abre y reproduce)
+    if (window.innerWidth <= 550) {
+      card.addEventListener('click', () => {
+        isOpen = !isOpen;
+        const imgBox = card.querySelector('.imgBox');
+        const bark = card.querySelector('.bark');
+        if (isOpen) {
+          imgBox.style.transform = 'rotateY(-90deg)';
+          bark.style.opacity = '1';
+          bark.style.boxShadow = '350px 200px 80px rgba(0, 0, 0, .3) inset';
+          playAudio(); // Reproduce audio al abrir
+        } else {
+          imgBox.style.transform = 'rotateY(0deg)';
+          bark.style.opacity = '0';
+          bark.style.boxShadow = 'none';
+          audio.pause(); // Pausa audio al cerrar
+          audio.currentTime = 0; // Reinicia el audio
+        }
+      });
+    } else {
+      // Evento para laptop (mouseover reproduce, mouseout pausa)
+      card.addEventListener('mouseover', () => {
+        playAudio(); // Reproduce al pasar el mouse
+      });
+      card.addEventListener('mouseout', () => {
+        audio.pause(); // Pausa al salir el mouse
+        audio.currentTime = 0; // Reinicia el audio
+      });
+    }
   </script>
 </body>
 </html>
