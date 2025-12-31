@@ -3,39 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Anniversary Card</title>
+  <title>Feliz Año Nuevo</title>
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
   <div class="card">
     <div class="imgBox">
       <div class="bark"></div>
-      <img src="https://artinmindstudio.com/wp-content/uploads/2020/01/Snoopy-Love.jpg" alt="Snoopy Love">
+      <img src="feliz-año-nuevo-concepto-de-celebración-post-tarjeta-texto-brillante-sobre-fondo-oscuro-el-394276165.webp" alt="Año Nuevo Amor">
     </div>
     <div class="details">
-      <h4 class="color1">¡Otro Mes Juntos!</h4>
-      <h4 class="color2 margin">¡FELIZ ANIVERSARIO!</h4>
-      <p>Mi amor, cada mes contigo es un tesoro que guardo en mi corazón.</p>
-      <p>Cada momento contigo es especial y lo amo demasiado, te amo a ti.</p>
-      <p>Gracias por llenar mi vida de risas, amor y momentos inolvidables.</p>
-      <p>Estoy tan feliz por tenerte como mi compañera de vida.</p>
-      <p>Sigamos celebrando muchos más meses y años juntos, siempre enamorados.</p>
-      <p>Te amo con toda mi alma.</p>
-      <p class="text-right">¡Feliz Aniversario!</p>
-      <p class="text-right">Con mucho amor Abiel ♥</p>
+      <h4 class="color2 margin">¡FELIZ AÑO 2026!</h4>
+      <p>Mi amor, cerramos un año lleno de recuerdos hermosos y abrimos uno nuevo que me emociona vivir contigo.</p>
+      <p>Gracias por ser mi alegría, mi apoyo y mi mejor compañía en cada día de este año que termina.</p>
+      <p>Eres lo mejor que me ha pasado y mi único deseo para este nuevo año es que sigamos caminando de la mano.</p>
+      <p>Que el 2026 nos traiga más risas, más sueños cumplidos y todo el amor del mundo.</p>
+      <p>Te amo hoy, mañana y cada segundo del año que comienza.</p>
+      <p>Eres y siempre serás mi persona favorita.</p>
+      <p class="text-right">¡Feliz Año Nuevo!</p>
+      <p class="text-right">Con todo mi corazón, Abiel ♥</p>
     </div>
   </div>
+
   <audio id="anniversaryAudio" loop>
     <source src="/congratulations.mp3" type="audio/mpeg">
-    Tu navegador no soporta el elemento de audio. Haz clic <a href="/congratulations.mp3">aquí</a> para descargar la canción.
+    Tu navegador no soporta el elemento de audio.
   </audio>
+
   <script>
     const card = document.querySelector('.card');
     const audio = document.getElementById('anniversaryAudio');
     let isOpen = false;
-    let audioPlaying = false; // Nueva variable para rastrear si el audio está reproduciéndose
+    let audioPlaying = false;
 
-    // Función para reproducir audio (maneja errores de autoplay)
     function playAudio() {
       if (!audioPlaying) {
         audio.play().then(() => {
@@ -46,7 +46,7 @@
       }
     }
 
-    // Evento para celular (clic abre y reproduce)
+    // Soporte para móviles
     if (window.innerWidth <= 550) {
       card.addEventListener('click', () => {
         isOpen = !isOpen;
@@ -56,20 +56,18 @@
           imgBox.style.transform = 'rotateY(-90deg)';
           bark.style.opacity = '1';
           bark.style.boxShadow = '350px 200px 80px rgba(0, 0, 0, .3) inset';
-          playAudio(); // Reproduce audio al abrir
+          playAudio();
         } else {
           imgBox.style.transform = 'rotateY(0deg)';
           bark.style.opacity = '0';
           bark.style.boxShadow = 'none';
-          // No pausa ni reinicia el audio al cerrar
         }
       });
     } else {
-      // Evento para laptop (mouseover reproduce, no pausa al salir)
+      // Soporte para Laptop/PC
       card.addEventListener('mouseover', () => {
-        playAudio(); // Reproduce al pasar el mouse
+        playAudio();
       });
-      // Eliminamos el evento mouseout para no pausar
     }
   </script>
 </body>
